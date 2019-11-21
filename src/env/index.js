@@ -3,8 +3,10 @@ const path = require('path');
 const config =require('./env.json');
 const env = config[process.env.NODE_ENV || 'development'];
 
-process.env.PORT=process.env.PORT || env.port;
-process.env.HOST=process.env.HOST || env.host;
+if(env!=='development'){
+    process.env.PORT=process.env.PORT || env.port;
+    process.env.HOST=process.env.HOST || env.host;
+}
 
 process.env.DB_HOST=env.db_host;
 process.env.DB_PORT=env.db_port;
