@@ -21,7 +21,7 @@ app.use(cors({
 app.use(require('./routes/index'));
 
 // Start server
-var server  = http.createServer(app);
-server.listen(process.env.PORT,process.env.HOST,(req,res)=>{
+//var server  = http.createServer(app);
+app.listen(process.env.PORT,(req,res)=>{
     console.log(`Servidor corriendo en http://${process.env.HOST}:${process.env.PORT}`);
 });
