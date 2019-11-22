@@ -20,6 +20,6 @@ process.env.ENCRYPT_KEY='jkbgfhudfkjghdfukjgtertrdf89yh64g85486486577y486fg5dfuh
 process.env.CLIENT_URL=env.client_url;
 
 //process.env.UPLOAD_PATH=path.resolve('uploads');
-process.env.UPLOAD_PATH=path.join(__dirname,'../uploads');
+process.env.UPLOAD_PATH=path.join(__dirname,'../../uploads');
 
 module.exports=env;

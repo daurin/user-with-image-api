@@ -30,7 +30,11 @@ router.put('/porfile', [
             if(user.picture)fs.unlink(path.resolve(process.env.UPLOAD_PATH,user.picture));
             return Promise.resolve();
         })
-        .then(()=>fs.writeFile(path.join(process.env.UPLOAD_PATH,fileName), req.file.buffer))
+        .then(()=>{
+            return fs.mkdir(process.env.UPLOAD_PATH,{recursive:true})
+                .then(()=>fs.writeFile(path.join(process.env.UPLOAD_PATH,fileName), req.file.buffer));
+            
+        })
         .then(()=>User.updateByFields({picture:fileName},{id:req.user.id}))
         .then(()=>res.status(200).end())
         .catch(err=>{
