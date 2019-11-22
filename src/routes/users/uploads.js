@@ -34,6 +34,7 @@ router.put('/porfile', [
         .then(()=>User.updateByFields({picture:fileName},{id:req.user.id}))
         .then(()=>res.status(200).end())
         .catch(err=>{
+            console.log(err);
             res.status(500).json({error:{
                 message:err.message
             }});
