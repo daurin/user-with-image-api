@@ -6,7 +6,7 @@ class User extends Model{
         super();
     }
 
-    static get tableName(){return 'USER';};
+    static get tableName(){return 'user';};
     static get columns(){
         return [
             'id',
