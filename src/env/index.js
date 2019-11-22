@@ -17,9 +17,9 @@ process.env.DB_PASSWORD=env.db_password;
 process.env.TOKEN_SEED=env.TOKEN_SEED;
 process.env.TOKEN_EXPIRATION=(60*1000)*60*24
 process.env.ENCRYPT_KEY='jkbgfhudfkjghdfukjgtertrdf89yh64g85486486577y486fg5dfuhlksdf';
-//process.env.PATH_UPLOADS=path.resolve(__dirname,'../../uploads');
 process.env.CLIENT_URL=env.client_url;
 
+//process.env.UPLOAD_PATH=path.resolve('uploads');
 process.env.UPLOAD_PATH=path.resolve('uploads');
 
 module.exports=env;

@@ -26,11 +26,11 @@ router.put('/porfile', [
     const fileName = `${req.user.id}-${new Date().getMilliseconds()}.${extension}`;
 
     User.findById(req.user.id)
-        .then((user)=>{
-            if(user.picture)return fs.unlink(path.resolve(process.env.UPLOAD_PATH,user.picture));
+        .then(async(user)=>{
+            if(user.picture)fs.unlink(path.resolve(process.env.UPLOAD_PATH,user.picture));
             return Promise.resolve();
         })
-        .then(()=>fs.writeFile(path.resolve(process.env.UPLOAD_PATH,fileName), req.file.buffer))
+        .then(()=>fs.writeFile(path.join(process.env.UPLOAD_PATH,fileName), req.file.buffer))
         .then(()=>User.updateByFields({picture:fileName},{id:req.user.id}))
         .then(()=>res.status(200).end())
         .catch(err=>{
