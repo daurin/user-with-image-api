@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../../database/models/User');
 const acceptFields = require('../../middlewares/acceptFields');
 const verifyToken = require('../../middlewares/verifyToken');
+const nodemailer = require('nodemailer');
 
 router.get('/', [
     verifyToken,
@@ -36,26 +37,28 @@ router.get('/', [
         })
 });
 
-router.get('/:id',[verifyToken],(req,res)=>{
+router.get('/:id', [verifyToken], (req, res) => {
     User.findById(req.params.id)
-        .then((user)=>{
-            if(user){
+        .then((user) => {
+            if (user) {
                 delete user.password;
                 res.json(user);
             }
             else res.status(404).end();
         })
-        .catch((err)=>{
-            res.status(500).json({error:{
-                message:err.message
-            }})
+        .catch((err) => {
+            res.status(500).json({
+                error: {
+                    message: err.message
+                }
+            })
         })
 })
 
 router.post('/',
     [
         (req, res, next) => {
-            req.user=User.fromObject(req.body);
+            req.user = User.fromObject(req.body);
             next();
         }
     ],
@@ -74,5 +77,7 @@ router.post('/',
     }
 );
 
-router.use('/uploads',require('./uploads'));
+router.use('/uploads', require('./uploads'));
+router.use('/tokens',require('./tokens'));
+router.use('/',require('./passwordReset'));
 module.exports = router;

@@ -7,7 +7,7 @@ router.get('/',(req,res)=>{
 })
 
 router.use('/users',require('./users'));
-router.use('/users/tokens',require('./users/tokens'));
+//router.use('/users/tokens',require('./users/tokens'));
 
 router.use('/files',/*[verifyToken],*/ express.static(process.env.UPLOAD_PATH));
 
